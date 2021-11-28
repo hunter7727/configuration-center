@@ -1,0 +1,21 @@
+server:
+  port: 28820
+
+spring:
+  application:
+    name: configServer
+  cloud:
+    config:
+      server:
+        #使用git方式保存配置项
+        git:
+          uri: https://github.com/hunter7727/config-server.git
+#          basedir: target/config
+#          default-label: main
+
+eureka:
+#  instance:
+#    instance-id: ${spring.application.name}
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.1.97:28800/eureka/
