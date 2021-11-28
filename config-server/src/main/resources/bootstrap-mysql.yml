@@ -1,0 +1,44 @@
+server:
+  port: 28820
+
+#spring:
+#  application:
+#    name: configServer
+#  cloud:
+#    config:
+#      profile: composite
+#      server:
+#        bootstrap: true
+#        default-label: dev
+#        jdbc:
+#          sql: SELECT config_key , config_value FROM config_server where application_name=? and config_profile=? and config_label=?
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://10.10.0.90:3306/config?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+#    username: root
+#    password: Gjzwy@123.com#$
+#  main:
+#    allow-bean-definition-overriding: true
+spring:
+  application:
+    name: configServer
+  cloud:
+    config:
+      server:
+        default-label: dev
+        jdbc:
+          sql: SELECT config_key , config_value FROM config_server where application_name=? and config_profile=? and config_label=?
+      # mysql 属性配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.10.0.90:3306/config?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Gjzwy@123.com#$
+  profiles:
+    active: jdbc
+  main:
+    allow-bean-definition-overriding: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.1.97:28800/eureka/
